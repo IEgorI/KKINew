@@ -12,10 +12,10 @@ public class GMscript : MonoBehaviour
     int startTime = 16;
     int curTime=16;
 
-
+    public bool prov1, prov2, prov3, prov4 = false;
     public CardBase cardbase;
-    public GameObject Card_1;
-    public GameObject Card_2;
+    public GameObject Card_1, Card_2, Card_3, Card_4, Card_5, Card_6, Card_7, Card_8, Card_9, Card_10, Card_11, Card_12, Card_13, Card_14, Card_15, Card_16, Card_17;
+
     int[,] cell = new int[,]
     {
         {0, 0, 0, 0 },
@@ -62,7 +62,10 @@ public class GMscript : MonoBehaviour
                 Move_card.comeback();
             }
             turn=false;
+            
             StartCoroutine(eTimer()); //переход таймера на врага
+            deal();
+
         }
        
     }
@@ -83,7 +86,10 @@ public class GMscript : MonoBehaviour
                 Move_card.comeback();
             }
             turn = true;
+            
             StartCoroutine(Timer()); //переход таймера на главного героя
+            deal2();
+
         }
 
     }
@@ -104,33 +110,63 @@ public class GMscript : MonoBehaviour
 
     void deal() //раздача карт для главного героя
     {
-        GameObject[] card = new GameObject[] { Card_1, Card_2 };
+        GameObject[] card = new GameObject[] { Card_1, Card_2, Card_3, Card_4, Card_5, Card_6, Card_7, Card_8, Card_9, Card_10, Card_11, Card_12, Card_13, Card_14, Card_15, Card_16, Card_17 };
         for (int i = 0; i < 4; i++)
         {
-            if (cell [i, 0] == 0)
+            if (GameObject.Find("c" + i.ToString() + "0").transform.childCount == 0)
             {
-                int number = Random.Range(0, 2);
+                // Данный код проверяет 4 карты в магазине и если они не куплены не выставляет их на поле
+                int number = 0;
+                while (true)
+                {
+                    number = Random.Range(0, 17);
+                    if ((number == 5 && prov1 == false) || (number == 8 && prov2 == false) || (number == 9 && prov3 == false) || (number == 14 && prov4 == false))
+                    {
+                        continue;
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
                 GameObject go = Instantiate(card[number]) as GameObject;
                 go.transform.parent = GameObject.Find("c"+i.ToString()+"0").transform;
                 go.transform.localPosition = Vector3.zero;
                 go.layer = 9; //половина поля для главного героя
-                cell[i, 0] = 1;
+                go.GetComponent<Attack>().dir = Vector3.right;
+                go.GetComponent<Attack>().AttTurn = true;
+                //cell[i, 0] = 1;
             }
         }
     }
     void deal2() //раздача карт для врага
     {
-        GameObject[] card = new GameObject[] { Card_1, Card_2 };
+        GameObject[] card = new GameObject[] { Card_1, Card_2, Card_3, Card_4, Card_5, Card_6, Card_7, Card_8, Card_9, Card_10, Card_11, Card_12, Card_13, Card_14, Card_15, Card_16, Card_17 };
         for (int i = 0; i < 4; i++)
         {
-            if (ecell[i, 0] == 0)
+            if (GameObject.Find("e" + i.ToString() + "0").transform.childCount == 0)
             {
-                int number = Random.Range(0, 2);
+                // Данный код проверяет 4 карты в магазине и если они не куплены не выставляет их на поле
+                int number = 0;
+                while (true)
+                {
+                    number = Random.Range(0, 17);
+                    if ((number == 5 && prov1 == false) || (number == 8 && prov2 == false) || (number == 9 && prov3 == false) || (number == 14 && prov4 == false))
+                    {
+                        continue;
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
                 GameObject go = Instantiate(card[number]) as GameObject;
                 go.transform.parent = GameObject.Find("e" + i.ToString() + "0").transform;
                 go.transform.localPosition = Vector3.zero;
                 go.layer = 10; //половина поля для врага
-                ecell[i, 0] = 1;
+                go.GetComponent<Attack>().dir = Vector3.left;
+                go.GetComponent<Attack>().AttTurn = false;
+                //ecell[i, 0] = 1;
             }
         }
     }

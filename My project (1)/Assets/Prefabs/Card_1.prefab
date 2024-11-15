@@ -169,7 +169,7 @@ TextMesh:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5692971767666737903}
-  m_Text: 10
+  m_Text: 5
   m_OffsetZ: 0
   m_CharacterSize: 0.09
   m_LineSpacing: 1.41
@@ -347,7 +347,11 @@ MonoBehaviour:
   dist: 25
   target: {fileID: 0}
   TrgTxt: {fileID: 0}
-  Dmg: 10
+  Dmg: 5
+  dir: {x: 0, y: 0, z: 0}
+  ball: {fileID: 2101918338965295022, guid: b7e354745b5886e4f88085ea23da092d, type: 3}
+  force: 2000
+  AttTurn: 0
 --- !u!1 &6455598623483893253
 GameObject:
   m_ObjectHideFlags: 0
@@ -360,6 +364,7 @@ GameObject:
   - component: {fileID: 8207478619697123414}
   - component: {fileID: 966241499646216993}
   - component: {fileID: 1050583491508168250}
+  - component: {fileID: 3421024449624315936}
   m_Layer: 0
   m_Name: Health
   m_TagString: Untagged
@@ -458,6 +463,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 621f7c532cf3fbc43a3f2a3cce8fe36f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3421024449624315936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6455598623483893253}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92228f64d3091374abe2f54f383412e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  owner: {fileID: 6093581774313927251}
 --- !u!1 &8557347534529735996
 GameObject:
   m_ObjectHideFlags: 0

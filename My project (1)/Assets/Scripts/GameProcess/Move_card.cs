@@ -76,7 +76,9 @@ public class Move_card : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
                 {
                     transform.localPosition = Vector3.zero;
                     draggable = false;
+                    //gameObject.GetComponent<AutoAttack>().ActCard = true;
                     GMscript.turn = !GMscript.turn;
+                    
 
                 }
             }
